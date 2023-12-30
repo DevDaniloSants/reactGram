@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-const jwtSecret = process.env.SWT_SECRET;
+const jwtSecret = process.env.JWT_SECRET;
 
 const authGuard = async (req, res, next) => {
   const authHeader = req.headers['authorization'];
@@ -22,3 +22,5 @@ const authGuard = async (req, res, next) => {
     res.status(401).json({ errors: ['Token inválido'] });
   }
 };
+
+module.exports = authGuard;

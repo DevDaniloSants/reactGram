@@ -1,16 +1,20 @@
-// Styles
-import styles from './RootLayout.module.css';
-
+// Router
 import { Outlet } from 'react-router-dom';
+
+// Components
+import Footer from '../components/Footer/Footer';
+import Navbar from '../components/Navbar/Navbar';
 
 const RootLayout = () => {
   return (
     <>
-      <header></header>
-      <main>
+      <header>
+        <Navbar />
+      </header>
+      <div className="container">
         <Outlet />
-      </main>
-      <footer></footer>
+      </div>
+      <Footer />
     </>
   );
 };

@@ -3,6 +3,32 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
+}
+
+body {
   background-color: #121212;
   color: #fafafa;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header,
+footer {
+  flex: 0 1 70px;
+}
+
+.container {
+  flex: 1 1 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
 }

@@ -1,11 +1,10 @@
-import React from 'react';
+import { RouterProvider } from 'react-router-dom';
+
+// Routes
+import router from './router';
 
 const App = () => {
-  return (
-    <div>
-      <h1>ReactGram</h1>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;

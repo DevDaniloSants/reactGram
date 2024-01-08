@@ -4,7 +4,7 @@ export const uploads = 'http://localhost:5000/uploads';
 export const requestConfig = (method, data, token = null, imagem = null) => {
   let config;
 
-  if (image) {
+  if (imagem) {
     config = {
       method,
       body: data,

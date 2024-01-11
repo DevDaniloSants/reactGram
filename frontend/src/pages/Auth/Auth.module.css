@@ -4,6 +4,7 @@
   background-color: #000;
   padding: 1.5em 2em;
   max-width: 33%;
+  min-width: 300px;
   margin: 2em auto;
 }
 
@@ -30,6 +31,7 @@
 .login p,
 .register p {
   text-align: center;
+  font-size: clamp(14px, 2vw, 16px);
 }
 
 .login p a,

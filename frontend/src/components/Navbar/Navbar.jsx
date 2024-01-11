@@ -16,14 +16,23 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+// redux
+import { logout, reset } from '../../slices/authSlice';
+
 const Navbar = () => {
   // check if user is auth
   const { auth } = useAuth();
   const { user } = useSelector((state) => state.auth);
 
-  if (user) {
-    console.log(user);
-  }
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+
+    navigate('/login');
+  };
 
   return (
     <nav className={styles.nav}>
@@ -33,13 +42,13 @@ const Navbar = () => {
         <input type="text" placeholder="Pesquisar" />
       </form>
       <ul className={styles.nav_link}>
-        <li>
-          <Link to="/">
-            <BsHouseDoorFill />
-          </Link>
-        </li>
         {auth ? (
           <>
+            <li>
+              <Link to="/">
+                <BsHouseDoorFill />
+              </Link>
+            </li>
             {user && (
               <li>
                 <Link to={`/users/${user._id}`}>
@@ -53,7 +62,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <span>Sair</span>
+              <span onClick={handleLogout}>Sair</span>
             </li>
           </>
         ) : (

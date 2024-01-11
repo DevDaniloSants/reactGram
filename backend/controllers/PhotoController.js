@@ -20,7 +20,7 @@ const insertPhoto = async (req, res) => {
   if (!newPhoto) {
     res
       .status(422)
-      .json({ erros: ['Houve um problema, tente novamente mais tarde'] });
+      .json({ errors: ['Houve um problema, tente novamente mais tarde'] });
     return;
   }
 

@@ -1,13 +1,29 @@
+// styles
 import styles from './Navbar.module.css';
-
-// components
 import { Link } from 'react-router-dom';
-import { BsSearch, BsHouseDoorFill } from 'react-icons/bs';
+
+// icons
+import {
+  BsSearch,
+  BsHouseDoorFill,
+  BsCameraFill,
+  BsFillPersonFill,
+} from 'react-icons/bs';
+
+// hooks
 import { useAuth } from '../../hooks/useAuth';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   // check if user is auth
   const { auth } = useAuth();
+  const { user } = useSelector((state) => state.auth);
+
+  if (user) {
+    console.log(user);
+  }
 
   return (
     <nav className={styles.nav}>
@@ -22,7 +38,25 @@ const Navbar = () => {
             <BsHouseDoorFill />
           </Link>
         </li>
-        {!auth && (
+        {auth ? (
+          <>
+            {user && (
+              <li>
+                <Link to={`/users/${user._id}`}>
+                  <BsCameraFill />
+                </Link>
+              </li>
+            )}
+            <li>
+              <Link to={`/profile`}>
+                <BsFillPersonFill />
+              </Link>
+            </li>
+            <li>
+              <span>Sair</span>
+            </li>
+          </>
+        ) : (
           <>
             <li>
               <Link to="/login">Entrar</Link>

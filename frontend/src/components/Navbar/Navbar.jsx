@@ -3,8 +3,12 @@ import styles from './Navbar.module.css';
 // components
 import { Link } from 'react-router-dom';
 import { BsSearch, BsHouseDoorFill } from 'react-icons/bs';
+import { useAuth } from '../../hooks/useAuth';
 
 const Navbar = () => {
+  // check if user is auth
+  const { auth } = useAuth();
+
   return (
     <nav className={styles.nav}>
       <Link to={'/'}>ReactGram</Link>
@@ -18,12 +22,16 @@ const Navbar = () => {
             <BsHouseDoorFill />
           </Link>
         </li>
-        <li>
-          <Link to="/login">Entrar</Link>
-        </li>
-        <li>
-          <Link to="/register">Cadastrar</Link>
-        </li>
+        {!auth && (
+          <>
+            <li>
+              <Link to="/login">Entrar</Link>
+            </li>
+            <li>
+              <Link to="/register">Cadastrar</Link>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );

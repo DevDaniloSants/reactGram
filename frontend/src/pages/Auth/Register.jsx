@@ -7,6 +7,7 @@ import Message from '../../components/Message/Message';
 // Hooks
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useAuth } from '../../hooks/useAuth';
 
 // Redux
 import { register, reset } from '../../slices/authSlice';
@@ -20,6 +21,8 @@ const Register = () => {
   const dispatch = useDispatch();
 
   const { loading, error } = useSelector((state) => state.auth);
+
+  const { auth, redirect, loading: loadingAuth } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,6 +43,18 @@ const Register = () => {
   useEffect(() => {
     dispatch(reset());
   }, [dispatch]);
+
+  // check if user is auth
+  useEffect(() => {
+    if (auth) {
+      redirect();
+    }
+  }, [auth]);
+
+  // if user is auth
+  if (loadingAuth) {
+    return <p>Carregando...</p>;
+  }
 
   return (
     <div className={styles.register}>

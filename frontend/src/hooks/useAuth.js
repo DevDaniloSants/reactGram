@@ -19,11 +19,11 @@ export const useAuth = () => {
     setLoading(false);
   }, [user]);
 
-  const redirect = () => {
-    if (auth) {
+  const redirectUserNotFound = () => {
+    if (user) {
       return navigate('/');
     }
   };
 
-  return { auth, loading, redirect };
+  return { auth, loading, redirectUserNotFound };
 };

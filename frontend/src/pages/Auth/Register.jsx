@@ -22,7 +22,7 @@ const Register = () => {
 
   const { loading, error } = useSelector((state) => state.auth);
 
-  const { auth, redirect, loading: loadingAuth } = useAuth();
+  const { auth, redirectUserNotFound, loading: loadingAuth } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,7 +47,7 @@ const Register = () => {
   // check if user is auth
   useEffect(() => {
     if (auth) {
-      redirect();
+      redirectUserNotFound();
     }
   }, [auth]);
 

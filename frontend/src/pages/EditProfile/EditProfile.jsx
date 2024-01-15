@@ -1,4 +1,4 @@
-import React from 'react';
+import styles from './EditProfile.module.css';
 
 const EditProfile = () => {
   const handleSubmit = (e) => {
@@ -6,9 +6,9 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="edit-profile">
+    <div className={styles.edit_profile}>
       <h2>Edite seus dados</h2>
-      <p className="subtitle">
+      <p className={styles.subtitle}>
         Adicione uma imagem de perfil e conte mais sobre você...
       </p>
       {/* imagem */}

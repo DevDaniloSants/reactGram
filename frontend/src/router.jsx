@@ -5,6 +5,7 @@ import RootLayout from './pages/RootLayout';
 import Home from './pages/Home/Home';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
+import EditProfile from './pages/EditProfile/EditProfile';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: '/profile',
+        element: <EditProfile />,
       },
       {
         path: '/login',

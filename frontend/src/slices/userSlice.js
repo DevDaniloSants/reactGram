@@ -16,21 +16,25 @@ export const profile = createAsyncThunk(
     const token = thunkApi.getState().auth.user.token;
 
     const data = await userService.profile(user, token);
-    if (data.errors) {
-      return thunkApi.rejectWithValue(data.errors[0]);
-    }
 
     return data;
   },
 );
 
-// update user profile
+// Update user details
 export const updateProfile = createAsyncThunk(
   'user/update',
-  async (user, thunkApi) => {
-    const token = thunkApi.getState().auth.user.token;
+  async (user, thunkAPI) => {
+    const token = thunkAPI.getState().auth.user.token;
 
     const data = await userService.updateProfile(user, token);
+
+    // Check for errors
+    if (data.errors) {
+      return thunkAPI.rejectWithValue(data.errors[0]);
+    }
+
+    console.log(data);
 
     return data;
   },
@@ -75,7 +79,7 @@ export const userSlice = createSlice({
       .addCase(updateProfile.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-        state.user = null;
+        state.user = {};
       });
   },
 });

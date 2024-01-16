@@ -45,13 +45,33 @@ const EditProfile = () => {
     e.preventDefault();
   };
 
+  const handleFile = (e) => {
+    // image preview
+    const image = e.target.files[0];
+
+    setPreviewImage(image);
+
+    // update image state
+    setProfileImage(image);
+  };
+
   return (
     <div className={styles.edit_profile}>
       <h2>Edite seus dados</h2>
       <p className={styles.subtitle}>
         Adicione uma imagem de perfil e conte mais sobre você...
       </p>
-      {/* imagem */}
+      {(user.profileImage || previewImage) && (
+        <img
+          className={styles.profile_image}
+          src={
+            previewImage
+              ? URL.createObjectURL(previewImage)
+              : `${uploads}/users/${user.profile.image}`
+          }
+          alt={user.name}
+        />
+      )}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -62,7 +82,7 @@ const EditProfile = () => {
         <input type="email" placeholder="Email" disabled value={email || ''} />
         <label>
           <span>Imagem do Perfil:</span>
-          <input type="file" />
+          <input type="file" onChange={handleFile} />
         </label>
         <label>
           <span>Bio:</span>

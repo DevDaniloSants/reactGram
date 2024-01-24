@@ -40,6 +40,23 @@ export const updateProfile = createAsyncThunk(
   },
 );
 
+// Get user Details
+export const getUserDetails = createAsyncThunk(
+  'ser/get',
+  async (id, thunkAPI) => {
+    const data = await userService.getUserDetails(id);
+
+    // check for errors
+    if (data.errors) {
+      return thunkAPI.rejectWithValue(data.errors[0]);
+    }
+
+    console.log(data);
+
+    return data;
+  },
+);
+
 export const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -80,6 +97,16 @@ export const userSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
         state.user = {};
+      })
+      .addCase(getUserDetails.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getUserDetails.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.error = null;
+        state.user = action.payload;
       });
   },
 });

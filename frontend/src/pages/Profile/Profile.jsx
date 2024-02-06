@@ -19,6 +19,9 @@ import {
   getUserPhotos,
 } from '../../slices/photoSlice';
 
+// icons
+import { BsFillEyeFill, BsPencilFill, BsXLg } from 'react-icons/bs';
+
 const Profile = () => {
   const { id } = useParams();
 
@@ -120,10 +123,10 @@ const Profile = () => {
       )}
       <div className="user_photos">
         <h2>Fotos publicadas:</h2>
-        <div className="photos_container">
+        <div className={styles.photos_container}>
           {photos &&
             photos.map((photo) => (
-              <div className="photo" key={photo._id}>
+              <div className={styles.photo} key={photo._id}>
                 {photo.image && (
                   <img
                     src={`${uploads}/photos/${photo.image}`}
@@ -131,7 +134,13 @@ const Profile = () => {
                   />
                 )}
                 {id === userAuth._id ? (
-                  <p>actions</p>
+                  <div className={styles.actions}>
+                    <Link to={`photos/${photo._id}`}>
+                      <BsFillEyeFill />
+                    </Link>
+                    <BsPencilFill />
+                    <BsXLg />
+                  </div>
                 ) : (
                   <Link className="btn" to={`photos/${photo._id}`}>
                     Ver

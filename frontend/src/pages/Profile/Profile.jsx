@@ -9,11 +9,15 @@ import { uploads } from '../../utils/config';
 // hooks
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 // Redux
 import { getUserDetails } from '../../slices/userSlice';
-import { publishPhoto, resetMessage } from '../../slices/photoSlice';
+import {
+  publishPhoto,
+  resetMessage,
+  getUserPhotos,
+} from '../../slices/photoSlice';
 
 const Profile = () => {
   const { id } = useParams();
@@ -22,6 +26,7 @@ const Profile = () => {
   const { user, loading } = useSelector((state) => state.user);
   const { user: userAuth } = useSelector((state) => state.auth);
   const {
+    photos,
     loading: loadingPhoto,
     message: messagePhoto,
     error: errorPhoto,
@@ -69,6 +74,7 @@ const Profile = () => {
   // loading user data
   useEffect(() => {
     dispatch(getUserDetails(id));
+    dispatch(getUserPhotos(id));
   }, [dispatch, id]);
 
   if (loading) {
@@ -112,6 +118,30 @@ const Profile = () => {
           </form>
         </div>
       )}
+      <div className="user_photos">
+        <h2>Fotos publicadas:</h2>
+        <div className="photos_container">
+          {photos &&
+            photos.map((photo) => (
+              <div className="photo" key={photo._id}>
+                {photo.image && (
+                  <img
+                    src={`${uploads}/photos/${photo.image}`}
+                    alt={photo.title}
+                  />
+                )}
+                {id === userAuth._id ? (
+                  <p>actions</p>
+                ) : (
+                  <Link className="btn" to={`photos/${photo._id}`}>
+                    Ver
+                  </Link>
+                )}
+              </div>
+            ))}
+          {photos.length === 0 && <p>O usuário ainda não possui fotos</p>}
+        </div>
+      </div>
     </div>
   );
 };

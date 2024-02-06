@@ -28,7 +28,7 @@ export const publishPhoto = createAsyncThunk(
   },
 );
 
-const getUserPhotos = createAsyncThunk(
+export const getUserPhotos = createAsyncThunk(
   'photo/userphotos',
   async (id, thunkApi) => {
     const token = thunkApi.getState().auth.user.token;

@@ -17,6 +17,7 @@ import {
   publishPhoto,
   resetMessage,
   getUserPhotos,
+  deletePhoto,
 } from '../../slices/photoSlice';
 
 // icons
@@ -43,6 +44,12 @@ const Profile = () => {
   const [title, setTitle] = useState('');
   const [image, setImage] = useState('');
 
+  const resetComponentMessage = () => {
+    setTimeout(() => {
+      dispatch(resetMessage());
+    }, 2000);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -62,9 +69,7 @@ const Profile = () => {
 
     dispatch(publishPhoto(formData));
 
-    setTimeout(() => {
-      dispatch(resetMessage());
-    }, 2000);
+    resetComponentMessage();
   };
 
   const handleFile = (e) => {
@@ -72,6 +77,13 @@ const Profile = () => {
     const image = e.target.files[0];
 
     setImage(image);
+  };
+
+  // delete photo
+  const handleDelete = (id) => {
+    dispatch(deletePhoto(id));
+
+    resetComponentMessage();
   };
 
   // loading user data
@@ -139,7 +151,7 @@ const Profile = () => {
                       <BsFillEyeFill />
                     </Link>
                     <BsPencilFill />
-                    <BsXLg />
+                    <BsXLg onClick={() => handleDelete(photo._id)} />
                   </div>
                 ) : (
                   <Link className="btn" to={`photos/${photo._id}`}>

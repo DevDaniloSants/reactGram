@@ -28,6 +28,10 @@
   flex-wrap: wrap;
 }
 
+.user_photos h2 {
+  padding: 1rem 0;
+}
+
 .photo {
   width: 32%;
   margin: 0.3%;

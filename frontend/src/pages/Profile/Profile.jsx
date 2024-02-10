@@ -191,7 +191,7 @@ const Profile = () => {
           {messagePhoto && <Message msg={messagePhoto} type={'success'} />}
         </>
       )}
-      <div className="user_photos">
+      <div className={styles.user_photos}>
         <h2>Fotos publicadas:</h2>
         <div className={styles.photos_container}>
           {photos &&
@@ -205,7 +205,7 @@ const Profile = () => {
                 )}
                 {id === userAuth._id ? (
                   <div className={styles.actions}>
-                    <Link to={`photos/${photo._id}`}>
+                    <Link to={`/photos/${photo._id}`}>
                       <BsFillEyeFill />
                     </Link>
                     <BsPencilFill onClick={() => handleEdit(photo)} />

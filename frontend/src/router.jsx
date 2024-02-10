@@ -7,6 +7,7 @@ import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import EditProfile from './pages/EditProfile/EditProfile';
 import Profile from './pages/Profile/Profile';
+import Photo from './pages/Photo/Photo';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: '/users/:id',
         element: <Profile />,
+      },
+      {
+        path: '/photos/:id',
+        element: <Photo />,
       },
       {
         path: '/login',

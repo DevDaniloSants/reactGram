@@ -19,7 +19,7 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
-  const { auth, redirectUserNotFound, loading: loadingAuth } = useAuth();
+  const { auth, redirectUserNotFound } = useAuth();
   const { loading, error } = useSelector((state) => state.auth);
 
   const handleSubmit = (e) => {
@@ -29,8 +29,6 @@ const Login = () => {
       email,
       password,
     };
-
-    console.log(user);
     dispatch(login(user));
   };
 
@@ -44,7 +42,7 @@ const Login = () => {
     if (auth) {
       redirectUserNotFound();
     }
-  }, [auth]);
+  }, [auth, redirectUserNotFound]);
 
   return (
     <div className={styles.login}>

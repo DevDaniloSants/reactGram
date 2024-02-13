@@ -23,10 +23,21 @@
   border-bottom: 1px solid #363636;
 }
 
-.author {
+.comment {
+  padding: 1rem;
+  margin: 10px;
+}
+
+.comment .author {
   display: flex;
   font-weight: bold;
 }
+
+.comment p {
+  padding: 0.5rem;
+}
+
+
 
 #photo .author img {
   width: 50px;

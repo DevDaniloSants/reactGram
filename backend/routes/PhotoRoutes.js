@@ -40,12 +40,6 @@ router.get('/search', authGuard, searchPhotos);
 router.get('/:id', authGuard, getPhotoById);
 router.put('/:id', authGuard, photoUpdateValidation(), validate, updatePhoto);
 router.put('/likes/:id', authGuard, likePhoto);
-router.put(
-  '/comment/:id',
-  authGuard,
-  photoCommentValidation(),
-  validate,
-  commentPhoto,
-);
+router.put('/comment/:id', authGuard, validate, commentPhoto);
 
 module.exports = router;

@@ -35,7 +35,7 @@ const photoCommentValidation = () => {
     body('comment')
       .isString()
       .withMessage('O comentário é obrigatório')
-      .isLength({ min: 5 })
+      .isLength({ min: 3 })
       .withMessage('O comentário precisa ter no mínimo 5 caracteres'),
   ];
 };

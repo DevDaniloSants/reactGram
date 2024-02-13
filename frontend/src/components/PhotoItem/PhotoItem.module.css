@@ -3,11 +3,12 @@
 }
 
 #home .photo_item h2 {
-  margin-bottom: 0.2em;
+  margin: 0.2em 0;
 }
 
 .photo_author {
   text-align: left;
+  padding: 1rem 0;
 }
 
 .photo_author a {
